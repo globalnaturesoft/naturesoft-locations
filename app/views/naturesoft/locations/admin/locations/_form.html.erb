@@ -1,0 +1,80 @@
+<% if location.errors.any? %>
+  <div class="alert alert-warning alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+    <div id="error_explanation">
+      <h2><%= pluralize(location.errors.count, "error") %> prohibited this slideshow from being saved:</h2>
+  
+      <ul>
+      <% location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class="panel panel-flat">
+  
+  <div class="panel-body">
+    
+    <%= form_for([naturesoft_locations, :admin, location], html: {class: "form-horizontal", id: "validate_checking"}) do |f| %>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-12">
+              <%= f.text_field :name, class: "form-control required" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:area) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-12">
+              <div class="input-group">
+                  <% selected = options_for_select([[location.area.name, location.area_id]], location.area_id) if location.area.present? %>
+                  <%= select_tag("location[area_id]",
+                    selected,
+                    {
+                      class: "select2-ajax required",
+                      include_blank: "none",
+                      "data-url": naturesoft_areas.select2_admin_areas_path,
+                    }
+                  ) %>
+                  <span class="input-group-btn">
+                    <a class="btn btn-info" href="<%= naturesoft_areas.new_admin_area_path %>"><i class="icon-plus2"></i></a>
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:longitude) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-12">
+              <%= f.text_field :longitude, class: "form-control required" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:latitude) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-12">
+              <%= f.text_field :latitude, class: "form-control required" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="text-right">
+        <%= button_tag "#{t(:save)}<i class=\"icon-check position-right\"></i>".html_safe, class: "btn btn-primary"%>
+        <%= link_to "#{t(:cancel)}<i class=\"icon-cross3 position-right\"></i>".html_safe, naturesoft_locations.admin_locations_path, class: "btn btn-danger"%>
+      </div>
+        
+    <% end %>
+  </div>
+</div>
