@@ -1,8 +1,0 @@
-<li>
-  <a href="#"><i class="fa fa-location-arrow"></i> <span><%= t(:location) %></span></a>
-  <ul>
-      <li<% if["naturesoft/locations/admin/locations"].include?(params[:controller]) %>class="active"<% end %>>
-        <%= link_to 'Locations', naturesoft_locations.admin_locations_path %>
-      </li>
-  </ul>
-</li>

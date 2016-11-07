@@ -2,14 +2,14 @@ require_dependency "naturesoft/application_controller"
 
 module Naturesoft
   module Locations
-    module Admin
-      class LocationsController < Naturesoft::Admin::AdminController
+    module Backend
+      class LocationsController < Naturesoft::Backend::BackendController
         before_action :set_location, only: [:show, :edit, :update, :destroy, :enable, :disable]
         before_action :default_breadcrumb
         
         # add top breadcrumb
         def default_breadcrumb
-          add_breadcrumb "Location", naturesoft_locations.admin_locations_path
+          add_breadcrumb "Location", naturesoft_locations.backend_locations_path
         end
     
         # GET /locations
@@ -38,7 +38,7 @@ module Naturesoft
           @location.user = current_user
     
           if @location.save
-            redirect_to naturesoft_locations.edit_admin_location_path(@location.id), notice: 'Location was successfully created.'
+            redirect_to naturesoft_locations.edit_backend_location_path(@location.id), notice: 'Location was successfully created.'
           else
             render :new
           end
@@ -47,7 +47,7 @@ module Naturesoft
         # PATCH/PUT /locations/1
         def update
           if @location.update(location_params)
-            redirect_to naturesoft_locations.edit_admin_location_path(@location.id), notice: 'Location was successfully updated.'
+            redirect_to naturesoft_locations.edit_backend_location_path(@location.id), notice: 'Location was successfully updated.'
           else
             render :edit
           end

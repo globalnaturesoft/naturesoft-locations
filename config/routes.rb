@@ -1,5 +1,5 @@
 Naturesoft::Locations::Engine.routes.draw do
-  namespace :admin, module: "admin", path: "admin/locations" do
+  namespace :backend, module: "backend", path: "backend/locations" do
     resources :locations do
       collection do
         put "enable"

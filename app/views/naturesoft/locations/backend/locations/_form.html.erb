@@ -17,7 +17,7 @@
   
   <div class="panel-body">
     
-    <%= form_for([naturesoft_locations, :admin, location], html: {class: "form-horizontal", id: "validate_checking"}) do |f| %>
+    <%= form_for([naturesoft_locations, :backend, location], html: {class: "form-horizontal", id: "validate_checking"}) do |f| %>
       
       <div class="row">
         <div class="col-md-6">
@@ -39,11 +39,11 @@
                     {
                       class: "select2-ajax required",
                       include_blank: "none",
-                      "data-url": naturesoft_areas.select2_admin_areas_path,
+                      "data-url": naturesoft_areas.select2_backend_areas_path,
                     }
                   ) %>
                   <span class="input-group-btn">
-                    <a class="btn btn-info" href="<%= naturesoft_areas.new_admin_area_path %>"><i class="icon-plus2"></i></a>
+                    <a class="btn btn-info" href="<%= naturesoft_areas.new_backend_area_path %>"><i class="icon-plus2"></i></a>
                   </span>
               </div>
             </div>
@@ -72,7 +72,7 @@
     
       <div class="text-right">
         <%= button_tag "#{t(:save)}<i class=\"icon-check position-right\"></i>".html_safe, class: "btn btn-primary"%>
-        <%= link_to "#{t(:cancel)}<i class=\"icon-cross3 position-right\"></i>".html_safe, naturesoft_locations.admin_locations_path, class: "btn btn-danger"%>
+        <%= link_to "#{t(:cancel)}<i class=\"icon-cross3 position-right\"></i>".html_safe, naturesoft_locations.backend_locations_path, class: "btn btn-danger"%>
       </div>
         
     <% end %>
